@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista Ordenada</title>
+<style>
+    body{
+        background-color: gray;
+    }
+
+  #container {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
+    background-color: whitesmoke;
+  }
+
+  #btnAdicionar {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .btnLimparTd {
+    background-color: darkred;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .btnLimpar {
+    background-color: darkred;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 15px;
+  }
+
+    .voltar-menu {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+</style>
+</head>
+<body>
+
+<div id="container">
+  <h2>ADICIONAR VALORES</h2>
+
+  <form id="formulario">
+    <label for="valor"><b>DIGITE UM VALOR:</b></label>
+    <input type="text" id="valor" name="valor" onkeypress="capEnter(event)">
+    <button type="button" id="btnAdicionar" onclick="addValor()">ADICIONAR VALOR</button>
+  </form>
+
+  <h2>VALORES LISTADOS</h2>
+
+  <ol id="listaValores">
+  </ol>
+
+  <button class="btnLimparTd" onclick="limparTd()">LIMPAR TUDO</button>
+</div>
+
+<script>
+  var listvalores = [];
+
+  function addValor() {
+    var valorInput = document.getElementById("valor").value.trim();
+
+    if (valorInput !== "") {
+      listvalores.push(valorInput);
+      attLista();
+      document.getElementById("valor").value = "";
+    } else {
+      alert("Por favor, insira um valor válido.");
+    }
+  }
+
+  function attLista() {
+    var listordem = document.getElementById("listaValores");
+    listordem.innerHTML = "";
+
+    listvalores.sort();
+
+    listvalores.forEach(function(valor) {
+      var itemList = document.createElement("li");
+      var btLimpar = document.createElement("button");
+      btLimpar.textContent = "♻";
+      btLimpar.className = "btnLimpar";
+      btLimpar.onclick = function() {
+        if (confirm("Tem certeza de que deseja remover este item?")) {
+          listvalores.splice(listvalores.indexOf(valor), 1);
+          attLista(); 
+        }
+      };
+      itemList.textContent = valor;
+      itemList.appendChild(btLimpar);
+      listordem.appendChild(itemList);
+    });
+  }
+
+  function capEnter(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      addValor();
+    }
+  }
+
+  function limparTd() {
+    if (listvalores.length === 0) {
+        alert("Não há itens para limpar! Adicione valores primeiro.");
+    } else if (confirm("Tem certeza de que deseja limpar todos os itens?")) {
+        listvalores = [];
+        attLista();
+    }
+}
+</script>
+<button class="voltar-menu" onclick="window.location.href = 'index.html';"><b>VOLTAR AO MENU</b></button>
+</body>
+</html>

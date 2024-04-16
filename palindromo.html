@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palíndromo</title>
+<style>
+    .voltar-menu {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body style="text-align: center;">
+
+<div style="margin-top: 50px;">
+    <label for="texto"><b>DIGITE UMA PALAVRA OU FRASE:</b></label><br>
+    <input type="text" id="texto" name="texto"><br>
+    <button type="button" onclick="verifPalindromo()" style="background-color: black; color: white;"><b>VERIFICAR</b></button>
+</div>
+
+<script>
+function verifPalindromo() {
+    var txt = document.getElementById("texto").value.toLowerCase();
+    txt = txt.replace(/[\W_]/g, "");
+    var txtInver = txt.split("").reverse().join("");
+
+    if (txt === txtInver) {
+        alert("O texto é um palíndromo!");
+    } else {
+        alert("O texto não é um palíndromo.");
+    }
+}
+</script>
+<button class="voltar-menu" onclick="window.location.href = 'index.html';">Voltar ao Menu</button>
+</body>
+</html>

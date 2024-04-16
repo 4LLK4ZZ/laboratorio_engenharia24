@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<style>
+    .voltar-menu {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+    body{
+        background-color: darkgray;
+    }
+</style>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class Digitar extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    texto: ""
+                };
+                this.frase = "Eae... ☜(ﾟヮﾟ☜)... Tudo bem?...Venha estudar na FATEC ^_^!";
+                this.timer = null;
+                this.index = 0;
+            }
+
+            componentDidMount() {
+                this.startTyping();
+            }
+
+            componentWillUnmount() {
+                clearInterval(this.timer);
+            }
+
+            startTyping() {
+                this.timer = setInterval(() => {
+                    this.setState({ texto: this.state.texto + this.frase.charAt(this.index) });
+                    this.index++;
+                    if (this.index >= this.frase.length) {
+                        clearInterval(this.timer);
+                        setTimeout(() => {
+                            this.setState({ texto: "" });
+                            this.index = 0;
+                            this.startTyping();
+                        }, 1000);
+                    }
+                }, 100);
+            }
+
+            render() {
+                return <p style={{fontSize: "50px", color: "green"}}>{this.state.texto}</p>
+            }
+        }
+
+        ReactDOM.render(<Digitar />, document.getElementById("root"));
+    </script>
+    <button class="voltar-menu" onclick="window.location.href = 'index.html';">Voltar ao Menu</button>
+</body>
+</html>

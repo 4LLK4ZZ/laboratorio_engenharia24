@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatorial</title>
+<style>
+    .voltar-menu {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<script>
+
+function calcFator(num) {
+    if (num === 0 || num === 1) {
+        return 1;
+    } else {
+        var result = 1;
+        for (var i = 2; i <= num; i++) {
+            result *= i;
+        }
+        return result;
+    }
+}
+
+var n = parseInt(prompt("Digite um número para ser calculado o fatorial:"));
+
+if (!isNaN(n) && n >= 0 && Number.isInteger(n)) {
+    var fator = calcFator(n);
+    alert("O fatorial de " + n + " é: " + fator);
+} else {
+    alert("Insira um número inteiro não negativo válido!");
+}
+</script>
+<button class="voltar-menu" onclick="window.location.href = 'index.html';">Voltar ao Menu</button>
+</body>
+</html>

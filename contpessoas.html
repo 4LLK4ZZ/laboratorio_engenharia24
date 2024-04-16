@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contador de Pessoas</title>
+<style>
+    .voltar-menu {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: darkgray;
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2px solid black;
+        padding: 20px; 
+        position: relative;
+        background-color: white;
+    }
+
+    .titulo {
+        margin-bottom: 20px;
+    }
+
+    .contador-wrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .contador {
+        flex-grow: 1;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contador h2 {
+        margin-bottom: 10px;
+    }
+
+    .contador img {
+        width: 64px; 
+        height: auto;
+        margin-bottom: 5px;
+    }
+
+    .botoes {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 60px;
+        border: none;
+        outline: none;
+        transition: background-color 0.3s ease;
+    }
+    
+    button.aumentar {
+        background-color: green;
+        color: white;
+    }
+
+    button.diminuir {
+        background-color: red;
+        color: white;
+        margin-left: 5px;
+    }
+
+    #totalContador {
+        position: relative;
+    }
+
+    #atualizar {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+</style>
+<script src="contpessoas.js"></script>
+</head>
+<body>
+<div id="container">
+    <img id="atualizar" src="atualizar.png" alt="Atualizar" onclick="resetContadores()">
+    <h1 class="titulo">Contador de Pessoas</h1>
+    <div class="contador-wrapper">
+        <div class="contador homem">
+            <img src="homem.png" alt="Homem">
+            <h2>Homens</h2>
+            <div class="botoes">
+                <button class="aumentar" onclick="aumentar('homens')">+</button>
+                <button class="diminuir" onclick="diminuir('homens')">-</button>
+            </div>
+            <span id="homensContador">0</span>
+        </div>
+
+        <div class="contador mulher">
+            <img src= "mulher.png" alt="Mulher">
+            <h2>Mulheres</h2>
+            <div class="botoes">
+                <button class="aumentar" onclick="aumentar('mulheres')">+</button>
+                <button class="diminuir" onclick="diminuir('mulheres')">-</button>
+            </div>
+            <span id="mulheresContador">0</span>
+        </div>
+    </div>
+    <h2>Total</h2>
+    <h2 id="totalContador">0</h2>
+</div>
+<button class="voltar-menu" onclick="window.location.href = 'index.html';">Voltar ao Menu</button>
+</body>
+</html>

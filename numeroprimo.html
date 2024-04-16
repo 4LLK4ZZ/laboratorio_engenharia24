@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Número primo</title>
+<style>
+    .voltar-menu {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<script>
+
+function verifPr(n) {
+
+    if (n <= 1) {
+        return false;
+    }
+
+    for (var i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+var num = parseInt(prompt("Digite um número inteiro positivo:"));
+
+if (num > 0 && Number.isInteger(num)) {
+
+    if (verifPr(num)) {
+        alert(num + " é um número primo!");
+    } else {
+        alert(num + " não é um número primo!");
+    }
+} else {
+    alert("Insira um número inteiro positivo válido!");
+}
+</script>
+<button class="voltar-menu" onclick="window.location.href = 'index.html';">Voltar ao Menu</button>
+</body>
+</html>

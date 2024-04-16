@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tipo de Dado</title>
+<style>
+    .voltar-menu {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<script>
+var dado = prompt("Digite um dado:");
+var verifytype = confirm("Deseja verificar o tipo do dado informado?");
+
+function verifandview(dado) {
+    var tipo = typeof dado;
+    document.write("O tipo do dado informado é: " + tipo);
+}
+
+function veriftypedado(dado) {
+    if (!isNaN(parseFloat(dado)) && isFinite(dado)) {
+        return "Number";
+    } else if (dado === "true" || dado === "false") {
+        return "Boolean";
+    } else if (dado === "null") {
+        return "Null";
+    } else if (dado === "undefined") {
+        return "Undefined";
+    } else if (dado.charAt(0) === "[" && dado.charAt(dado.length - 1) === "]") {
+        return "Array";
+    } else if (dado.charAt(0) === "{" && dado.charAt(dado.length - 1) === "}") {
+        return "Object";
+    } else if (!isNaN(Date.parse(dado))) {
+        return "Date";
+    } else {
+        return "String";
+    }
+}
+
+if (verifytype) {
+    var tipoDoDado = veriftypedado(dado);
+    document.write("O tipo do dado informado é: " + tipoDoDado);
+} else {
+    document.write("Finalizado.");
+}
+</script>
+<button class="voltar-menu" onclick="window.location.href = 'index.html';">Voltar ao Menu</button>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Atual</title>
+<style>
+    .voltar-menu {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<h2>Data Atual</h2>
+
+<p id="dataAtual"></p>
+
+<script>
+function viewDataAtt() {
+    var dSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+    var mAno = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+
+    var dtAtt = new Date();
+    var diaSem = dSemana[dtAtt.getDay()];
+    var dia = dtAtt.getDate();
+    var mes = mAno[dtAtt.getMonth()];
+    var ano = dtAtt.getFullYear();
+
+    return diaSem + ", " + dia + " de " + mes + " de " + ano;
+}
+
+document.getElementById("dataAtual").innerText = viewDataAtt();
+</script>
+<button class="voltar-menu" onclick="window.location.href = 'index.html';">Voltar ao Menu</button>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hora Atual</title>
+<style>
+    .voltar-menu {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<p id="horaAtt" style="font-size: 36px; font-weight: bold;"></p>
+
+<script>
+function attHora() {
+    var dtAtt = new Date();
+    var horas = dtAtt.getHours();
+    var minutos = dtAtt.getMinutes();
+    var segundos = dtAtt.getSeconds();
+
+    horas = horas < 10 ? "0" + horas : horas;
+    minutos = minutos < 10 ? "0" + minutos : minutos;
+    segundos = segundos < 10 ? "0" + segundos : segundos;
+
+    var horario = horas + ":" + minutos + ":" + segundos;
+
+    document.getElementById("horaAtt").innerText = horario;
+
+    setTimeout(attHora, 1000);
+}
+
+attHora();
+</script>
+<button class="voltar-menu" onclick="window.location.href = 'index.html';">Voltar ao Menu</button>
+</body>
+</html>
